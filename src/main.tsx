@@ -1,7 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.module.css";
 import { Home } from "./components/home/home";
+import "./index.module.css";
+import "./utils/swiper-imports"
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

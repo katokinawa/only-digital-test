@@ -1,4 +1,4 @@
-import { Slider } from "../slider/slider";
+import { SwiperInfo } from "../swiper-info/swiper-info";
 import styles from "./Home.module.css";
 
 export const Home = () => {
@@ -16,8 +16,10 @@ export const Home = () => {
           <p className={styles.year_from}>2022</p>
           <p className={styles.year_to}>2024</p>
         </article>
-        <article className={styles.circle}></article>
-        <Slider />
+        <div className={styles.centr_circle}></div>
+        <div className={styles.horizontal_stick}></div>
+        <div className={styles.vertical_stick}></div>
+        <SwiperInfo />
       </main>
     </>
   );
