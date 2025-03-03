@@ -1,19 +1,45 @@
-import styles from "./swiper-info.module.css";
+import { ReactElement } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, FreeMode, Mousewheel } from "swiper/modules";
+import { motion } from "framer-motion";
+import styles from "./swiper-info.module.css";
 
-export const SwiperInfo = () => {
+interface Item {
+  id: number;
+  year: number;
+  content: string;
+}
+
+interface Items {
+  [key: number]: Item[];
+}
+
+interface SwiperInfoProps {
+  index: number | null;
+  onNext: () => void;
+  onPrev: () => void;
+  items: Items;
+}
+
+export const SwiperInfo = ({
+  index,
+  onNext,
+  onPrev,
+  items,
+}: SwiperInfoProps): ReactElement => {
+  const activeItems = items[index ?? 0];
+
   return (
     <article className={styles.swiper}>
       <div className={styles.swiper_navigation_wrapper}>
         <div className={styles.swiper_pagination}></div>
         <div className={styles.swiper_navigation}>
-          <div className={styles.swiper_navigation_prev}>
+          <div onClick={onPrev} className={styles.swiper_navigation_prev}>
             <div className={styles.swiper_navigation_button_circle}>
               <span className={styles.swiper_navigation_arrow_left}></span>
             </div>
           </div>
-          <div className={styles.swiper_navigation_next}>
+          <div onClick={onNext} className={styles.swiper_navigation_next}>
             <div className={styles.swiper_navigation_button_circle}>
               <span className={styles.swiper_navigation_arrow_right}></span>
             </div>
@@ -35,8 +61,8 @@ export const SwiperInfo = () => {
             enabled: true,
           }}
           navigation={{
-            nextEl: `.${styles.swiper_slide_next}, .${styles.swiper_navigation_next}`,
-            prevEl: `.${styles.swiper_slide_prev}, .${styles.swiper_navigation_prev}`,
+            nextEl: `.${styles.swiper_slide_next}`,
+            prevEl: `.${styles.swiper_slide_prev}`,
             disabledClass: `${styles.swiper_button_disabled}`,
           }}
           pagination={{
@@ -47,98 +73,23 @@ export const SwiperInfo = () => {
           }}
           grabCursor={true}
         >
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2014</h2>
-              <p className={styles.info_paragraph}>
-                13 сентября — частное солнечное затмение, видимое в Южной Африке
-                и части Антарктиды
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2015</h2>
-              <p className={styles.info_paragraph}>
-                Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных
-                галактик, получившую обозначение GN-z11
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2016</h2>
-              <p className={styles.info_paragraph}>
-                Компания Tesla официально представила первый в мире
-                электрический грузовик Tesla Semi
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2017</h2>
-              <p className={styles.info_paragraph}>
-                13 сентября — частное солнечное затмение, видимое в Южной Африке
-                и части Антарктиды
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2018</h2>
-              <p className={styles.info_paragraph}>
-                Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных
-                галактик, получившую обозначение GN-z11
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2019</h2>
-              <p className={styles.info_paragraph}>
-                Компания Tesla официально представила первый в мире
-                электрический грузовик Tesla Semi
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2020</h2>
-              <p className={styles.info_paragraph}>
-                13 сентября — частное солнечное затмение, видимое в Южной Африке
-                и части Антарктиды
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2021</h2>
-              <p className={styles.info_paragraph}>
-                Телескоп «Хаббл» обнаружил самую удалённую из всех обнаруженных
-                галактик, получившую обозначение GN-z11
-              </p>
-            </article>
-          </SwiperSlide>
-          <SwiperSlide>
-            <article className={styles.info_item}>
-              <h2 className={styles.info_heading}>2022</h2>
-              <p className={styles.info_paragraph}>
-                Компания Tesla официально представила первый в мире
-                электрический грузовик Tesla Semi
-              </p>
-            </article>
-          </SwiperSlide>
+          {activeItems.map((item, index) => (
+            <SwiperSlide key={item.id}>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2 }}
+              >
+                <article className={styles.info_item}>
+                  <h2 className={styles.info_heading}>{item.year}</h2>
+                  <p className={styles.info_paragraph}>{item.content}</p>
+                </article>
+              </motion.div>
+            </SwiperSlide>
+          ))}
         </Swiper>
-        <div className={styles.swiper_slide_prev}>
-          <div className={styles.swiper_slide_button_circle}>
-            <span className={styles.swiper_slide_arrow_left}></span>
-          </div>
-        </div>
-        <div className={styles.swiper_slide_next}>
-          <div className={styles.swiper_slide_button_circle}>
-            <span className={styles.swiper_slide_arrow_right}></span>
-          </div>
-        </div>
       </div>
     </article>
   );

@@ -95,9 +95,9 @@
   pointer-events: none;
 }
 
-
 .swiper_wrapper {
   width: 97%;
+  height: 135px;
   position: relative;
 }
 
@@ -148,4 +148,22 @@
 .swiper_slide_prev.swiper_button_disabled,
 .swiper_slide_next.swiper_button_disabled {
   display: none;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
 }
