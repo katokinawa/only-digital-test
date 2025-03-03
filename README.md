@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# ONLY DIGITAL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Описание
+Блок содержит информацию о временных отрезках, в каждом из которых существует несколько событий. 
+При переключении временных отрезков изменяются соответствующие числа и под ними показывается новый слайдер, который содержит подробную информацию по ключевым событиям на активном временном отрезке.
 
-Currently, two official plugins are available:
+Возможно существование от 2 до 6 временных отрезков. Все интерактивные точки на окружности располагаются на одинаковом расстоянии друг от друга
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Весь блок стоит сделать независимым от другой логики на странице. 
+Например, если добавить на страницу ещё один такой же блок, верстка и логика работы этих блоков не будет нарушена
 
-## Expanding the ESLint configuration
+Все существующие в макете линии — это не разметочная сетка, а часть верстки 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Требования к реализации
+* Необходимо использовать Typescript
+* Можно использовать React.js или нативный JS на Ваш выбор
+* В случае использования нативного JS, можно воспользоваться любым удобным для Вас HTML-шаблонизатором или обычным HTML
+* Стилизация с использованием SASS/SCSS (В случае работы с React.js, возможно использование styled-components)
+* Сборка проекта с помощью Webpack
+* Для работы со слайдерами необходимо использовать библиотеку Swiper
+* Для реализации js-анимаций можно использовать библиотеку gsap
 
-- Configure the top-level `parserOptions` property like this:
+Правило:
+1. Не использовать JQuery
+2. Не использовать Bootstrap, Tailwind и т.п.
+3. Не использовать библиотеки с готовыми UI-компонентами такие, как MaterialUI, AntDesign и т.п.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Для того чтобы развернуть проект, следуйте этим шагам:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Перейдите в репозиторий проекта, после нажмите "Code" и загрузите к себе локальный архив с проектом.
+2. Распакуйте папку из архива в удобное местоположение.
+3. Откройте терминал Bash или PowerShell.
+4. Перейдите в директорию проекта с помощью команды `cd <директория>`.
+5. Загрузите все зависимости с помощью команды `npm install`.
+5. Забилдите проект `npm run build`.
+6. Запустите проект с помощью команды `npm run preview`.
