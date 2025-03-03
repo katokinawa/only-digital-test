@@ -28,18 +28,49 @@ export const SwiperInfo = ({
   items,
 }: SwiperInfoProps): ReactElement => {
   const activeItems = items[index ?? 0];
-
   return (
     <article className={styles.swiper}>
+      <div className={styles.swiper_pagination_dots_wrapper}>
+        <ul className={styles.swiper_pagination_list}>
+          {Object.keys(items).map((item) => {
+            const itemIndex = Number(item);
+            const defaultIndex = index ?? 0;
+            return (
+              <li
+                key={item}
+                className={
+                  itemIndex === defaultIndex
+                    ? `${styles.swiper_pagination_dots} ${styles.swiper_pagination_dot_active}`
+                    : styles.swiper_pagination_dots
+                }
+              ></li>
+            );
+          })}
+        </ul>
+      </div>
       <div className={styles.swiper_navigation_wrapper}>
-        <div className={styles.swiper_pagination}>{index ? index + 1 : 1}/{Object.keys(items).length}</div>
+        <div className={styles.swiper_pagination}>
+          {index ? index + 1 : 1}/{Object.keys(items).length}
+        </div>
         <div className={styles.swiper_navigation}>
-          <div onClick={onPrev} className={styles.swiper_navigation_prev}>
+          <div
+            onClick={onPrev}
+            className={`${styles.swiper_navigation_prev} ${
+              (index ?? 0) === 0 ? styles.swiper_button_disabled : ""
+            }`}
+          >
             <div className={styles.swiper_navigation_button_circle}>
               <span className={styles.swiper_navigation_arrow_left}></span>
             </div>
           </div>
-          <div onClick={onNext} className={styles.swiper_navigation_next}>
+          <div
+            onClick={onNext}
+            className={`${styles.swiper_navigation_next} ${
+              index === Object.keys(items).length - 1
+                ? styles.swiper_button_disabled
+                : ""
+            }`}
+          >
             <div className={styles.swiper_navigation_button_circle}>
               <span className={styles.swiper_navigation_arrow_right}></span>
             </div>
