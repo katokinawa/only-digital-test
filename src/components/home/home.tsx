@@ -173,6 +173,7 @@ export const Home = (): ReactElement => {
   const currentItems = items[activeIndex ?? 0];
 
   const handleClick = (index: number): void => {
+    setIsTextVisible(false)
     setActiveIndex(index);
     setRotationAngle(-angles[index]);
 
