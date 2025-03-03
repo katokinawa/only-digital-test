@@ -188,10 +188,14 @@
     width: 25px;
   }
   .swiper_navigation_arrow_left {
-    transform: scale(0.8);
+    width: 7px;
+    height: 8px;
+    background-image: url(../../images/arrow-left-small.svg);
   }
   .swiper_navigation_arrow_right {
-    transform: scale(0.8);
+    width: 7px;
+    height: 8px;
+    background-image: url(../../images/arrow-right-small.svg);
   }
   .swiper_navigation_wrapper {
     position: absolute;
