@@ -192,3 +192,35 @@
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
+
+@media (max-width: 480px) {
+  .main_heading {
+    font-size: 2rem;
+  }
+  .main {
+    --main-width: 320px;
+    --main-height: 568px;
+    padding: 59px 27px 13.33px 20px;
+  }
+  .years {
+    --years-font-size: 5.6rem;
+    top: 163px;
+  }
+  .vertical_stick {
+    display: none;
+  }
+  .horizontal_stick {
+    width: 280px;
+    top: 293px;
+    left: auto;
+  }
+  .centr_circle {
+    display: none;
+  }
+  .circle_dot {
+    display: none;
+  }
+  .circle_item_heading {
+    display: none;
+  }
+}

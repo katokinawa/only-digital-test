@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, FreeMode, Mousewheel } from "swiper/modules";
+import { Navigation, FreeMode, Mousewheel } from "swiper/modules";
 import { motion } from "framer-motion";
 import styles from "./swiper-info.module.css";
 
@@ -32,7 +32,7 @@ export const SwiperInfo = ({
   return (
     <article className={styles.swiper}>
       <div className={styles.swiper_navigation_wrapper}>
-        <div className={styles.swiper_pagination}></div>
+        <div className={styles.swiper_pagination}>{index ? index + 1 : 1}/{Object.keys(items).length}</div>
         <div className={styles.swiper_navigation}>
           <div onClick={onPrev} className={styles.swiper_navigation_prev}>
             <div className={styles.swiper_navigation_button_circle}>
@@ -49,9 +49,8 @@ export const SwiperInfo = ({
 
       <div className={styles.swiper_wrapper}>
         <Swiper
-          modules={[Navigation, Pagination, FreeMode, Mousewheel]}
+          modules={[Navigation, FreeMode, Mousewheel]}
           spaceBetween={80}
-          slidesPerView={3}
           slidesPerGroup={3}
           mousewheel={{
             invert: true,
@@ -65,13 +64,12 @@ export const SwiperInfo = ({
             prevEl: `.${styles.swiper_slide_prev}`,
             disabledClass: `${styles.swiper_button_disabled}`,
           }}
-          pagination={{
-            el: `.${styles.swiper_pagination}`,
-            currentClass: `${styles.swiper_pagination_current}`,
-            totalClass: `${styles.swiper_pagination_total}`,
-            type: "fraction",
-          }}
           grabCursor={true}
+          breakpoints={{
+            480: {
+              slidesPerView: 3,
+            },
+          }}
         >
           {activeItems.map((item, index) => (
             <SwiperSlide key={item.id}>
